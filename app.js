@@ -26,7 +26,7 @@ con.connect((err) => {
 
 app.get('/', (req, res) => {
   res.render("index");
-})
+});
 
   app.get('/temperaturas', (req, res) => {
   const selectQuery = 'SELECT * FROM temperaturas';
