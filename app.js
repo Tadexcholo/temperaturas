@@ -6,15 +6,14 @@ const port = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const connection = mysql.createConnection({
-  host: '185.232.14.52',
-  user: 'u760464709_torres_sotelo1',
-  password: 'NuV8em2',
-  database: 'u760464709_torres_sotelo1'
+var con = mysql.createConnection({
+  host: "185.232.14.52",
+  user: "u760464709_torres_sotelo1",
+  password: ":NuV8em2",
+  database: "u760464709_torres_sotelo1"
 });
 
-
-connection.connect((err) => {
+con.connect((err) => {
   if (err) {
     console.error('Error connecting to database: ', err);
     return;
@@ -24,7 +23,7 @@ connection.connect((err) => {
 
 app.get('/', (req, res) => {
   const selectQuery = 'SELECT * FROM temperaturas';
-  connection.query(selectQuery, (err, result) => {
+  con.query(selectQuery, (err, result) => {
     if (err) {
       console.error('Error executing select query: ', err);
       res.status(500).send('Internal Server Error');
@@ -134,7 +133,7 @@ app.post('/', (req, res) => {
   const { temperatura, humedad } = req.body;
   const tiempo = new Date().toISOString().slice(0, 19).replace('T', ' ');
   const insertQuery = `INSERT INTO temperaturas (temperatura, humedad, tiempo) VALUES ('${temperatura}', '${humedad}', '${tiempo}')`;
-  connection.query(insertQuery, (err, result) => {
+  con.query(insertQuery, (err, result) => {
     if (err) {
       console.error('Error executing insert query: ', err);
       res.status(500).send('Internal Server Error');
