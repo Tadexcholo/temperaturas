@@ -41,7 +41,7 @@ if ($_POST["token"] === $_SESSION['token']) {
             // Usuario autenticado, redirigirlo a principal.html
             $_SESSION['usuario'] = $usuario;
             $_SESSION['token'] = token();
-            header('Location: principal.html');
+            header('Location: app.js');
             exit;
         } else {
             echo '<div class="alert alert-danger" role="alert">Credenciales incorrectas. Inicio de sesión fallido.</div>';
