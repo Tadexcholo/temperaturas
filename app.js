@@ -18,10 +18,10 @@ app.use(cors());
 
 //Establecemos los prámetros de conexión
 var conexion = mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    password:'',
-    database:'arduino'
+    host:'185.232.14.52',
+    user:'u760464709_torres_sotelo4',
+    password:'pE1RzT?e?',
+    database:'u760464709_torres_sotelo4'
 });
 
 //Conexión a la database
