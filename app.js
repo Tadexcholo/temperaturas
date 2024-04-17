@@ -7,8 +7,6 @@ const port = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.set("view engine", "ejs");
-
 var con = mysql.createConnection({
   host: "185.232.14.52",
   user: "u760464709_torres_sotelo1",
@@ -25,10 +23,6 @@ con.connect((err) => {
 });
 
 app.get('/', (req, res) => {
-  res.render("index");
-});
-
-  app.get('/temperaturas', (req, res) => {
   const selectQuery = 'SELECT * FROM temperaturas';
   con.query(selectQuery, (err, result) => {
     if (err) {
@@ -136,7 +130,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.post('/temperaturas', (req, res) => {
+app.post('/', (req, res) => {
   const { temperatura, humedad } = req.body;
   const tiempo = new Date().toISOString().slice(0, 19).replace('T', ' ');
   const insertQuery = `INSERT INTO temperaturas (temperatura, humedad, tiempo) VALUES ('${temperatura}', '${humedad}', '${tiempo}')`;
